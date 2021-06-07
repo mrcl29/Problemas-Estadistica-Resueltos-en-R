@@ -1,0 +1,92 @@
+---
+title: "Entrega Problemas"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+##Problema 2
+
+```{r}
+C1=read.csv(
+  "https://raw.githubusercontent.com/joanby/estadistica-inferencial/master/datasets/C1.csv",
+  header=TRUE)$time
+C2=read.csv(
+  "https://raw.githubusercontent.com/joanby/estadistica-inferencial/master/datasets/C2.csv",
+  header=TRUE)$time
+n1=length(na.omit(C1))
+n1
+n2=length(na.omit(C2))
+n2
+media.muestra1=mean(C1,na.rm=TRUE)
+media.muestra1
+media.muestra2=mean(C2,na.rm=TRUE)
+media.muestra2
+desv.tip.muestra1=sd(C1,na.rm=TRUE)
+desv.tip.muestra1
+desv.tip.muestra2=sd(C2,na.rm=TRUE)
+desv.tip.muestra2
+```
+
+##APARTADO 1
+
+#Cargamos en R las variables C1 y C2 como las variables 'time' de dos dataframes de un servidor de github pasando la url del fitchero original
+#Omitimos los valores 'NA' de los tamaños muestrales n1 y n2 antes de asignar la 'length' de los arrays
+#Calculamos las medias y las desviaciones típicas muestrales omitiendo los valores no disponibles
+
+##APARTADO 2
+
+#test para varianzas iguales
+```{r}
+t.test(C1,C2,var.equal = TRUE,alternative = "greater")
+```
+
+#test para varianzas distintas
+```{r}
+t.test(C1,C2,var.equal = FALSE,alternative = "greater")
+```
+
+##APARTADO 3
+
+```{r}
+t.test(C1,C2,var.equal=TRUE,alternative="two.sided",conf.level = 0.95)$conf.int
+
+t.test(C1,C2,var.equal = FALSE,alternative="two.sided",conf.level = 0.95)$conf.int
+```
+
+##APARTADO 4
+
+#test de Fisher
+```{r}
+var.test(C1,C2,alternative="two.sided")
+```
+
+#test de 
+```{r}
+library(car,quietly = TRUE)
+tiempo=c(C1,C2)
+grupo=as.factor(c(rep(1,length(C1)),rep(2,length(C1))))
+leveneTest(tiempo~grupo)
+```
