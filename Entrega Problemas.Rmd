@@ -83,7 +83,7 @@ t.test(C1,C2,var.equal = FALSE,alternative="two.sided",conf.level = 0.95)$conf.i
 var.test(C1,C2,alternative="two.sided")
 ```
 
-#test de 
+#test de Levene
 ```{r}
 library(car,quietly = TRUE)
 tiempo=c(C1,C2)
