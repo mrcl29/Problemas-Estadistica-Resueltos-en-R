@@ -2,8 +2,7 @@
 title: "Entrega Problemas"
 output: html_document
 ---
-
-```{r setup, include=FALSE}
+//jj
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
